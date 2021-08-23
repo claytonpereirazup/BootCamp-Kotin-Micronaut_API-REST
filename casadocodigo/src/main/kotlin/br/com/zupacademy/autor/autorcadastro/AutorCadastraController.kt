@@ -10,11 +10,11 @@ import javax.validation.Valid
 
 @Validated
 @Controller(value = "/autores")
-class AutorController(val autorRepositoy: AutorRepositoy) {
+class AutorCadastraController(val autorRepositoy: AutorRepositoy) {
 
     @Post
     @Transactional
-    fun cadastrar(@Body @Valid request: AutorRequest): HttpResponse<Any>{
+    fun cadastrar(@Body @Valid request: AutorCadastraRequest): HttpResponse<Any>{
         var novoAutor = request.toModel()
         autorRepositoy.save(novoAutor)
         println("Autor Criado: $novoAutor")

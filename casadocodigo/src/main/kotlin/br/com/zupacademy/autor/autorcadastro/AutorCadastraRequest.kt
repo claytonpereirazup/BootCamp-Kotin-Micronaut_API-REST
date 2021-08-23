@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
 @Introspected
-data class AutorRequest(
+data class AutorCadastraRequest(
     @field:NotBlank
     val nome: String,
     @field:Email

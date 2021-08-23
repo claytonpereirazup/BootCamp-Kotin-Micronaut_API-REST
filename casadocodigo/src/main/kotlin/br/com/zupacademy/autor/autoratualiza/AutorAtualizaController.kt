@@ -42,7 +42,7 @@ class AutorAtualizaController (
         println("Autor ID $id Recuperado: ${autor.toString()}")
 
         autor.descricao = descricao
-        autorRepositoy.update(autor)
+        //autorRepositoy.update(autor)
 
         println("Autor ID $id Atualizado: ${autor.toString()}")
         return HttpResponse.ok(AutorAtualizaResponse(autor))

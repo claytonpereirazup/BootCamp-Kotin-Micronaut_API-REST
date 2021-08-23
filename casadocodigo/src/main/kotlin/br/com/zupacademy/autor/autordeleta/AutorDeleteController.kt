@@ -11,6 +11,7 @@ import javax.transaction.Transactional
 class AutorDeleteController(val autorRepositoy: AutorRepositoy){
 
     @Delete(value = "/{id}")
+    @Transactional
     fun deletar(@PathVariable id: Long): HttpResponse<Any> {
         val possivelAutor = autorRepositoy.findById(id)
         if (possivelAutor.isEmpty) {

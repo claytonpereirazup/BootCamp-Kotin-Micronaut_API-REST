@@ -17,11 +17,12 @@ class AutorBuscaEmailController(val autorRepositoy: AutorRepositoy) {
             val autoresResponse: List<AutorBuscaEmailResponse> = autorRepositoy.findAll().map { x -> AutorBuscaEmailResponse(x) }
             return HttpResponse.ok(autoresResponse)
         }
-        val possivalAutor = autorRepositoy.findByEmail(email)
-        if (possivalAutor.isEmpty){
+        //val possivalAutor = autorRepositoy.findByEmail(email) //Declarative Query
+        val possivelAutor = autorRepositoy.buscaPorEmail(email) //Create Query
+        if (possivelAutor.isEmpty){
             return HttpResponse.notFound()
         }
-        val autor = possivalAutor.get()
+        val autor = possivelAutor.get()
 
         return HttpResponse.ok(AutorBuscaEmailResponse(autor))
     }

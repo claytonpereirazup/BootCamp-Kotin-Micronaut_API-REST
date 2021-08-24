@@ -1,6 +1,8 @@
 package br.com.zupacademy.autor.autorcadastro
 
 import br.com.zupacademy.autor.AutorRepositoy
+import br.com.zupacademy.autor.autorcadastro.enderecoclient.EnderecoClient
+import br.com.zupacademy.autor.autorcadastro.enderecoclient.EnderecoResponse
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 import io.micronaut.http.uri.UriBuilder
@@ -10,12 +12,18 @@ import javax.validation.Valid
 
 @Validated
 @Controller(value = "/autores")
-class AutorCadastraController(val autorRepositoy: AutorRepositoy) {
+class AutorCadastraController(val autorRepositoy: AutorRepositoy,
+                              val enderecoClient: EnderecoClient
+) {
 
     @Post
     @Transactional
     fun cadastrar(@Body @Valid request: AutorCadastraRequest): HttpResponse<Any>{
-        var novoAutor = request.toModel()
+        //Cliente HTTP - Faz uma requisição a um serviço externo
+
+        val enderecoResponse:HttpResponse<EnderecoResponse> = enderecoClient.consulta(request.cep)
+
+        var novoAutor = request.toModel(enderecoResponse.body()!!)
         autorRepositoy.save(novoAutor)
         println("Autor Criado: $novoAutor")
 

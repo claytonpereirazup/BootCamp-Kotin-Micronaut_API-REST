@@ -3,6 +3,7 @@ package br.com.zupacademy.autor.autorcadastro
 import br.com.zupacademy.autor.Autor
 import br.com.zupacademy.autor.autorcadastro.enderecoclient.Endereco
 import br.com.zupacademy.autor.autorcadastro.enderecoclient.EnderecoResponse
+import br.com.zupacademy.autor.validadores.Cep
 import io.micronaut.core.annotation.Introspected
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
@@ -13,7 +14,7 @@ data class AutorCadastraRequest(
     @field:NotBlank val nome: String,
     @field:Email @field:NotBlank val email: String,
     @field:NotBlank @field:Size(max = 400) val descricao: String,
-    @field:NotBlank val cep: String
+    @field:NotBlank @field:Cep val cep: String
 ) {
     fun toModel(enderecoResponse: EnderecoResponse): Autor {
         val endereco = Endereco(enderecoResponse)

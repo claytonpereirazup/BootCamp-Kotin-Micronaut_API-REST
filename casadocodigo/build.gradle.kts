@@ -54,7 +54,8 @@ dependencies {
     testImplementation("org.testcontainers:mysql")
     testImplementation("org.testcontainers:testcontainers")
 
-
+    //TESTE
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 }
 
 allOpen {

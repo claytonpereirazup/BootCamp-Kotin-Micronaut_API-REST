@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
     build()
         .args(*args)
         .packages("br.com.zupacademy")
-        .defaultEnvironments("dev")
+        .defaultEnvironments("prod")
         .start()
 }
 
